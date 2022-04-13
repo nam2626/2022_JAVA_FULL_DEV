@@ -35,7 +35,7 @@ public class VariableEx {
 		System.out.println(n1 + ","+n2+","+n3);
 		
 		int box = 10;
-		box = 20;
+		box = 20; //이전에 저장된 10은 사라짐
 		System.out.println(box);
 	}
 
