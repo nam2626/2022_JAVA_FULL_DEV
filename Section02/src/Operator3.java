@@ -22,6 +22,7 @@ public class Operator3 {
 		System.out.println(n2++);//10
 		System.out.println(n2);//11
 		
+		//단독으로 실행할 때는 전위든 후위든 상관이 없음
 		n1++;
 		++n2;
 	}
