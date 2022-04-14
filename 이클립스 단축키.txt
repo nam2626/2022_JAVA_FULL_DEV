@@ -2,3 +2,4 @@ System.out.println(); 완성 ---> sysout 작성후 Ctrl + space
 해당 라인 또는 드래그한 라인을 위나 아래로 동일하게 복제 ---> Ctrl + Alt + ↑, Ctrl + Alt + ↓
 해당 라인 또는 드래그한 라인을 위나 아래로 이동 ---> Alt + ↑, Alt + ↓
 한줄 단위 삭제 ---> Ctrl + D
+한줄 주석 설정/해제 ---> Ctrl + /
