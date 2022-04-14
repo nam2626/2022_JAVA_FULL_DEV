@@ -21,6 +21,11 @@ public class Operator5 {
  		System.out.println(n1 < 5 || n2 > 10);
  		System.out.println(n1 < 5 || n2 < 10);
  		System.out.println(n1 < 5 || n2 < 10 || n1 == n2);
+ 		
+ 		// NOT 연산 : !조건식 --> true -> false, false -> true
+ 		System.out.println(!(n1 < 5));
+ 		boolean result = n1 > 5;
+ 		System.out.println(!result);
 	}
 
 }
