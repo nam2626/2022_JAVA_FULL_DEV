@@ -17,7 +17,18 @@ public class ElseIfEx {
 		System.out.print("나이 입력 >>> ");
 		int age = sc.nextInt();
 
-		
+		// 성인 - 20, 고등학생 - 17, 중학생 - 14, 초등학생 - 8, 미취학 아동
+		if(age < 8) {
+			System.out.println("미취학아동 입니다.");
+		}else if(age < 14) {
+			System.out.println("초등학생 입니다.");
+		}else if(age < 17) {
+			System.out.println("중학생 입니다.");
+		}else if(age < 20) {
+			System.out.println("고등학생 입니다.");
+		}else {
+			System.out.println("성인 입니다.");
+		}
 	}
 
 }
