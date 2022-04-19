@@ -19,6 +19,7 @@ public class ArrayEx1 {
 		arr[2] = 30;
 		arr[3] = 40;
 		arr[4] = 50;
+		//arr[5] = 60;//인덱스 번호가 범위에 벗어나면 런타임에러 발생
 		
 		System.out.println(arr[0]);
 		System.out.println(arr[1]);
