@@ -2,7 +2,7 @@
 public class Array2DEx2 {
 
 	public static void main(String[] args) {
-		int[][] arr = { 
+		int[][] arr = new int[][]{ 
 				    //   0 1 2 3   
  						{1,2,3,4},//0행
 					//   0 1 2 3   
