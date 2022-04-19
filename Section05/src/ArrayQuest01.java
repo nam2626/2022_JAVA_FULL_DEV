@@ -14,6 +14,9 @@ public class ArrayQuest01 {
 			System.out.print(i+"번째 숫자 입력 : ");
 			arr[i] = sc.nextInt();
 		}
+		for(int i=0;i<arr.length;i++) {
+			System.out.println(arr[i]);
+		}
 	}
 
 }
