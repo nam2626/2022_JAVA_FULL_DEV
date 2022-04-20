@@ -23,12 +23,15 @@ public class Person {
 	 */
 	
 	/*
-	 * 필드의 name과 age를 이용하여 Person에 정보를 출력
+	 * 필드의 name과 age를 이용하여 Person의 정보를 출력
 	 * 예시>
 	 * 이름 : OOO
 	 * 나이 : 20
 	 */
-	
+	void printPersonInfo() {
+		System.out.println("이름 : "+name);
+		System.out.println("나이 : "+age);
+	}
 }
 
 
