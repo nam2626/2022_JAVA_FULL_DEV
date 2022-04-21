@@ -77,6 +77,26 @@ public class Aircon {
 			System.out.println("제습 운전 설정");
 		}
 	}
+	
+	public void remote(int command) {
+		switch(command) {
+		case 1:
+			powerOnOff();
+			break;
+		case 2:
+			tempUp();
+			break;
+		case 3:
+			tempDown();
+			break;
+		case 4:
+			changeWind();
+			break;
+		case 5:
+			selectMode();
+			break;
+		}
+	}
 }
 
 
