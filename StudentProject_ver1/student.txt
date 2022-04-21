@@ -20,6 +20,7 @@
 		기능
 			생성자() --> 배열 생성, 인덱스 초기화
 			registerStudent() - void --> 학생정보 등록
+			printAllStudent() - void --> 전체학생정보 조회
 			searchStudent() - void --> 학생정보 조회
 			updateStudent() - void --> 학생정보 수정
 			deleteStudent() - void --> 학생정보 삭제 
