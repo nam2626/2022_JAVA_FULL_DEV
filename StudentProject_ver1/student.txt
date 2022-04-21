@@ -12,3 +12,24 @@
 			set/get method
 			printStudentInfo() - 학생정보 출력
 			
+	학생정보 서비스 클래스 - StudentService
+		필드
+			배열 - 학생 클래스
+			인덱스 - int ---> 학생 클래스 배열을 관리하는 인덱스
+			
+		기능
+			생성자() --> 배열 생성, 인덱스 초기화
+			registerStudent() - void --> 학생정보 등록
+			searchStudent() - void --> 학생정보 조회
+			updateStudent() - void --> 학생정보 수정
+			deleteStudent() - void --> 학생정보 삭제 
+			
+			
+			
+			
+			
+					
+					
+					
+					
+					
