@@ -32,11 +32,14 @@ public class Aircon {
 	 */
 	public void tempUp() {
 		if(!power) return;
+		if(mode != 1) return; //운전 모드가 냉방일때만 실행 
 		if(temp < MAX_TEMP) temp++;
 		System.out.println("희망 온도 : "+temp);
+		
 	}
 	public void tempDown() {
 		if(!power) return;
+		if(mode != 1) return; 
 		if(temp > MIN_TEMP) temp--;
 		System.out.println("희망 온도 : "+temp);
 	}
