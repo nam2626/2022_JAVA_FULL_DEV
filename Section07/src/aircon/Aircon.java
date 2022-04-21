@@ -58,6 +58,22 @@ public class Aircon {
 			System.out.println("자동");
 		}
 	}
+	
+	public void selectMode() {
+		mode = mode % 3;
+		mode++;
+		
+		switch(mode) {
+		case 1:
+			System.out.println("냉방 운전 설정");
+			break;
+		case 2:
+			System.out.println("송풍 운전 설정");
+			break;
+		default:
+			System.out.println("제습 운전 설정");
+		}
+	}
 }
 
 
