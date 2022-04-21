@@ -1,5 +1,7 @@
 package tv;
-
+/*
+ * TV 클래스
+ */
 public class TV {
 	int ch;//채널
 	int vol;//음량
