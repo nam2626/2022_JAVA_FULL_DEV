@@ -103,6 +103,18 @@ public class StudentService {
 		index--;
 		System.out.println("삭제 작업을 완료하였습니다.");
 	}
+
+	public void maxScoreStudent() {
+		StudentVO max = arr[0];
+		
+		for(int i=0;i<index;i++) {
+			if(max.getScore() < arr[i].getScore())
+				max = arr[i];
+		}
+		
+		System.out.println("전체석차 1등");
+		max.printStudentInfo();
+	}
 	
 }//class
 
