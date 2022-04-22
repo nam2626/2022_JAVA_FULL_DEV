@@ -85,7 +85,19 @@ public class StudentService {
 		sc.nextLine();
 		System.out.println("학생 정보 수정이 완료되었습니다.");
 	}
-	
+	public void deleteStudent(Scanner sc) {
+		System.out.println("학생정보 삭제를 시작합니다.........");
+		int i = searchStudent(sc);
+		if(i == -1) return;
+		
+		//배열을 i값 기준으로 하나씩 땡겨오기
+		while(i < index) {
+			arr[i] = arr[i+1];
+			i++;
+		}
+		index--;
+		System.out.println("삭제 작업을 완료하였습니다.");
+	}
 	
 }//class
 
