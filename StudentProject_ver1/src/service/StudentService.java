@@ -49,7 +49,7 @@ public class StudentService {
 		}
 	}
 	//학생정보 조회
-	public void searchStudent(Scanner sc) {
+	public int searchStudent(Scanner sc) {
 		System.out.println("학생번호를 이용해서 학생정보 조회를 시작합니다.............");
 		//학번입력
 		System.out.print("검색할 학생번호 입력 : ");
@@ -61,11 +61,12 @@ public class StudentService {
 			if(studentNo.equals(arr[i].getStudentNo())) {
 				//	일치하면 학생정보 출력 후 종료
 				arr[i].printStudentInfo();
-				return;
+				return i;
 			}
 		}
 		//조회 결과가 없으면 '입력한 학번에 대한 학생 정보가 없습니다' 라는 메세지 출력
 		System.out.println("입력한 학번에 대한 학생 정보가 없습니다");
+		return -1;
 	}//searchStudent
 }//class
 
