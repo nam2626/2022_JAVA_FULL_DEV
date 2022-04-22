@@ -11,6 +11,11 @@ public class StudentService {
 	public StudentService() {
 		arr = new StudentVO[10];
 		index=0;
+		//학생 데이터를 4건 추가
+		arr[index++] = new StudentVO("20201111", "홍길동", "컴퓨터공학과", 3.14);
+		arr[index++] = new StudentVO("20201112", "김철수", "경영학과", 4.2);
+		arr[index++] = new StudentVO("20201113", "이영히", "경제학과", 2.24);
+		arr[index++] = new StudentVO("20201114", "박영수", "생활체육학과", 1.56);
 	}
 	
 	public void registerStudent(Scanner sc) {
