@@ -12,6 +12,13 @@ public class EmployeeService {
 	}
 	
 	public void registerEmployee(Scanner sc) {
+		//배열 개수 늘리기
+		if(index == arr.length) {
+			Employee[] temp = arr;
+			arr = new Employee[arr.length+3];
+			for(int i=0;i<temp.length;i++)
+				arr[i] = temp[i];
+		}
 		//사원정보 등록
 		System.out.println("사원 정보 등록을 시작합니다..........");
 		//1 - 일반사원, 2 - 영업직, 3 - 파견직을 구분해서 입력 받은후
@@ -46,7 +53,10 @@ public class EmployeeService {
 		System.out.println("사원정보 등록 완료");
 		
 	}
-	
+	//전체 사원정보 출력
+	public void printAllEmployee() {
+		
+	}
 }
 
 
