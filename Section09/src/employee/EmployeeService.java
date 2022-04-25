@@ -29,15 +29,18 @@ public class EmployeeService {
 		System.out.println("기본급 입력 : ");
 		int salary = sc.nextInt(); sc.nextLine();
 		
-		if(no == 2) {
+		switch(no) {
+		case 2:
 			System.out.println("영업포인트 입력 : ");
 			int point = sc.nextInt(); sc.nextLine();
 			arr[index++] = new SalaryEmployee(eno, name, salary, point);
-		}else if(no == 3) {
+			break;
+		case 3:
 			System.out.println("파견지 위험도 입력 : ");
 			char danger = sc.nextLine().charAt(0);//입력받은 문자열의 첫번째 글자를 뽑음
 			arr[index++] = new DispatchEmployee(eno, name, salary, danger);
-		}else {
+			break;
+		default:
 			arr[index++] = new Employee(eno, name, salary);
 		}
 		System.out.println("사원정보 등록 완료");
