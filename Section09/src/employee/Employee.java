@@ -3,7 +3,7 @@ package employee;
 public class Employee {
 	private String eno;
 	private String name;
-	private int salary;
+	protected int salary;
 	
 	public Employee(String eno, String name, int salary) {
 		super();
