@@ -2,9 +2,9 @@ package employee;
 
 public class SalaryEmployee extends Employee {
 	private int point;
-
-	public SalaryEmployee(String eno, String name, int salary, int point) {
-		super(eno, name, salary);
+	
+	public SalaryEmployee(String eno, String name, int point) {
+		super(eno, name, 100);
 		this.point = point;
 	}
 	

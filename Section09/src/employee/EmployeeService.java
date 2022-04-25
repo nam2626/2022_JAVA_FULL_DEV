@@ -9,6 +9,12 @@ public class EmployeeService {
 	public EmployeeService() {
 		index = 0;
 		arr = new Employee[10];
+		
+		arr[index++] = new Employee("A0001","홍씨",200);
+		arr[index++] = new SalaryEmployee("A0002","김씨",400);
+		arr[index++] = new SalaryEmployee("A0003","박씨",330);
+		arr[index++] = new DispatchEmployee("A0004","이씨",320,'A');
+		arr[index++] = new DispatchEmployee("A0005","지씨",220,'C');
 	}
 	
 	public void registerEmployee(Scanner sc) {
@@ -40,7 +46,7 @@ public class EmployeeService {
 		case 2:
 			System.out.println("영업포인트 입력 : ");
 			int point = sc.nextInt(); sc.nextLine();
-			arr[index++] = new SalaryEmployee(eno, name, salary, point);
+			arr[index++] = new SalaryEmployee(eno, name, point);
 			break;
 		case 3:
 			System.out.println("파견지 위험도 입력 : ");
@@ -55,7 +61,8 @@ public class EmployeeService {
 	}
 	//전체 사원정보 출력
 	public void printAllEmployee() {
-		
+		for(int i=0;i<index;i++)
+			arr[i].printEmployeeInfo();
 	}
 }
 
