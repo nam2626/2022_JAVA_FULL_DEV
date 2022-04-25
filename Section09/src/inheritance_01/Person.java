@@ -14,4 +14,18 @@ public class Person extends Animal{
 		System.out.println("이 사람의 나이 : "+age);
 	}
 
+	@Override
+	public void eat() {
+		System.out.println("사람이 밥을 먹습니다.");
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
