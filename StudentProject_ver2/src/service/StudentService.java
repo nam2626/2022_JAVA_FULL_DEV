@@ -55,23 +55,6 @@ public class StudentService {
 		}
 		return null;
 	}// searchStudent
-//	public void updateStudent(Scanner sc) {
-//		System.out.println("학생정보 수정을 시작합니다......");
-//		//학번으로 조회 - searchStudent -> 조회 결과를 인덱스로 받음
-//		int i = searchStudent(sc);
-//		//조회결과 인덱스 값이 -1 --> 조회결과가 없음, 메서드 종료
-//		if(i == -1) return;
-//		//조회결과 인덱스 값이 0 이상이면 --> 조회결과가 있음
-//		//조회결과가 있으면 --> 이름, 학과, 평점을 새로 입력 받아서 수정
-//		System.out.print("수정할 이름 : ");
-//		arr[i].setName(sc.nextLine());
-//		System.out.print("수정할 학과 : ");
-//		arr[i].setMajor(sc.nextLine());
-//		System.out.print("수정할 평점 : ");
-//		arr[i].setScore(sc.nextDouble());
-//		sc.nextLine();
-//		System.out.println("학생 정보 수정이 완료되었습니다.");
-//	}
 
 	public boolean deleteStudent(String studentNo) {
 		boolean flag = false;
