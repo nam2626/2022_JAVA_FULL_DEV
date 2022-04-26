@@ -27,6 +27,9 @@ public class HandlerMapping {
 		case 4:
 			controller = new DeleteController();
 			break;
+		case 5:
+			controller = new PrintAllController();
+			break;
 		}
 		
 		

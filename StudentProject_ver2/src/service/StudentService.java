@@ -1,7 +1,5 @@
 package service;
 
-import java.util.Scanner;
-
 import vo.StudentVO;
 
 public class StudentService {
@@ -26,6 +24,14 @@ public class StudentService {
 		return instance;
 	}
 
+	public StudentVO[] getArr() {
+		return arr;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
 	public void registerStudent(StudentVO vo) {
 		if (index == arr.length) {
 			System.out.println("더 이상 저장할 공간이 없습니다.");
@@ -33,17 +39,6 @@ public class StudentService {
 		}
 		arr[index++] = vo;
 		System.out.println("학생정보 등록이 완료되었습니다....");
-	}
-
-	// 전체 학생 정보 조회
-	public void printAllStudentInfo() {
-		if (index == 0) {
-			System.out.println("학생 정보가 하나도 없습니다.");
-			return;
-		}
-		for (int i = 0; i < index; i++) {
-			arr[i].printStudentInfo();// 한건씩 출력
-		}
 	}
 
 	// 학생정보 조회
