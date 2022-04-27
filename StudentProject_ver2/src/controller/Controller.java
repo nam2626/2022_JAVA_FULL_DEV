@@ -2,8 +2,6 @@ package controller;
 
 import java.util.Scanner;
 
-public class Controller {
-	public void execute(Scanner sc) {
-		
-	}
+public abstract class Controller {
+	public abstract void execute(Scanner sc);
 }
