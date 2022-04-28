@@ -24,14 +24,6 @@ public class StudentService {
 		return instance;
 	}
 
-	public StudentVO[] getArr() {
-		return arr;
-	}
-
-	public int getIndex() {
-		return index;
-	}
-
 	public boolean registerStudent(StudentVO vo) {
 		//중복된 데이터가 있는지 체크
 		if(list.contains(vo)) {
@@ -42,12 +34,11 @@ public class StudentService {
 
 	// 학생정보 조회
 	public StudentVO searchStudent(String studentNo) {
-		for (int i = 0; i < index; i++) {
-			if (studentNo.equals(arr[i].getStudentNo())) {
-				return arr[i];
-			}
-		}
-		return null;
+		StudentVO vo = new StudentVO(studentNo, null, null, 0);
+		int i = list.indexOf(vo);
+		if(i == -1)
+			return null;
+		return list.get(i);
 	}// searchStudent
 
 	public boolean deleteStudent(String studentNo) {
