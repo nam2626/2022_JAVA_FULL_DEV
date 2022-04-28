@@ -42,32 +42,25 @@ public class StudentService {
 	}// searchStudent
 
 	public boolean deleteStudent(String studentNo) {
-		boolean flag = false;
-
-		for (int i = 0; i < index; i++) {
-			if (studentNo.equals(arr[i].getStudentNo())) {
-				flag = true;
-				while (i < index) {
-					arr[i] = arr[i + 1];
-					i++;
-				}
-				index--;
-			}
-		}
-		return flag;
+		return list.remove(new StudentVO(studentNo, null, null, 0));
 	}
 
-	public StudentVO maxScoreStudent() {
-		if(index == 0) return null;
+	public ArrayList<StudentVO> maxScoreStudent() {
+		if(list.isEmpty()) return null;
 		
-		StudentVO max = arr[0];
+		StudentVO max = list.get(0);
 
-		for (int i = 0; i < index; i++) {
-			if (max.getScore() < arr[i].getScore())
-				max = arr[i];
+		for (int i = 1; i < list.size(); i++) {
+			if (max.getScore() < list.get(i).getScore())
+				max = list.get(i);
 		}
-		
-		return max;
+		ArrayList<StudentVO> result = new ArrayList<StudentVO>();
+		//점수 최대값과 같은 StudentVO를 result에 추가
+		for (int i = 1; i < list.size(); i++) {
+			if (max.getScore() == list.get(i).getScore())
+				result.add(list.get(i));
+		}
+		return result;
 	}
 
 }// class
