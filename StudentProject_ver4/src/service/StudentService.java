@@ -23,7 +23,11 @@ public class StudentService {
 			instance = new StudentService();
 		return instance;
 	}
-
+	
+	public ArrayList<StudentVO> getList() {
+		return list;
+	}
+	
 	public boolean registerStudent(StudentVO vo) {
 		//중복된 데이터가 있는지 체크
 		if(list.contains(vo)) {
@@ -62,6 +66,8 @@ public class StudentService {
 		}
 		return result;
 	}
+
+	
 
 }// class
 
