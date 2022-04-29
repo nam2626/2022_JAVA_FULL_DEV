@@ -1,5 +1,6 @@
 package string;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class StringMain {
@@ -32,6 +33,31 @@ public class StringMain {
 		System.out.println(str2.substring(10, 15));
 		//문자열 바꾸기
 		System.out.println(str2.replace("World", "Hell"));
+		
+		String str3 = "    Hello Wolrd    ";
+		System.out.println(str3.length());
+		//문자열 양쪽에 필요없는 공백을 제거
+		System.out.println(str3.trim());
+		System.out.println(str3.trim().length());
+
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("Java");
+		list.add("HTML/CSS");
+		list.add("Android");
+		list.add("jsp");
+		list.add("js/jQuery");
+		
+		String str4 = "";//빈 문자열
+		for(String s : list) {
+			str4 += s + " ";
+		}
+		str4 = str4.trim();
+		System.out.println(str4+" "+str4.length());
+		String str5 = String.join(" ", list);
+		System.out.println(str5+" "+str5.length());
+		
+		String[] arr2 = str5.split(" ");
+		System.out.println(Arrays.toString(arr2));
 	}
 
 }
