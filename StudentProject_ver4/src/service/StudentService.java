@@ -3,7 +3,12 @@ package service;
 import java.util.ArrayList;
 
 import vo.StudentVO;
-
+/**
+ * StudentService 클래스
+ * 추가 삭제 수정 조회 작업 수행
+ * @author ITSC
+ *
+ */
 public class StudentService {
 	private static StudentService instance = new StudentService();
 
@@ -27,7 +32,11 @@ public class StudentService {
 	public ArrayList<StudentVO> getList() {
 		return list;
 	}
-	
+	/**
+	 * 학생정보 등록하는 메서드
+	 * @param vo 학생정보 한건에 해당함
+	 * @return true면 학생정보 등록 성공, false면 학생정보 등록 실패
+	 */
 	public boolean registerStudent(StudentVO vo) {
 		//중복된 데이터가 있는지 체크
 		if(list.contains(vo)) {
