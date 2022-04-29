@@ -1,0 +1,6 @@
+try : 작업영역, 대신에 이 영역에서는 Exception이 발생할 수 있다.
+catch : try 영역에서 Exception이 발생했을때 실행되는 영역
+finally : 작업이 정상적으로 완료되거나, Exception이 발생하더라도 반드시 실행되는 영역
+		  무조건 실행되는 영역
+throw
+throws
