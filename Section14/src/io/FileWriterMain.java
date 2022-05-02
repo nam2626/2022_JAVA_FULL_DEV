@@ -11,7 +11,8 @@ public class FileWriterMain {
 		PrintWriter pw = null;
 		try {
 			//저장할 파일 경로
-			fw = new FileWriter("hello.txt");
+			//쓰기용으로 파일을 열면 매번 새로 생성
+			fw = new FileWriter("hello.txt",true);
 			//프로세스 스트림 초기화
 			pw = new PrintWriter(fw);
 			
