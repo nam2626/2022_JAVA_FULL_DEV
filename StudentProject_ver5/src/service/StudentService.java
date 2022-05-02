@@ -48,11 +48,11 @@ public class StudentService {
 	}
 
 	// 학생정보 조회
-	public StudentVO searchStudent(String studentNo) {
+	public StudentVO searchStudent(String studentNo) throws StudentException {
 		StudentVO vo = new StudentVO(studentNo, null, null, 0);
 		int i = list.indexOf(vo);
 		if(i == -1)
-			return null;
+			throw new StudentException("검색한 학생정보 결과가 없습니다.");
 		return list.get(i);
 	}// searchStudent
 
