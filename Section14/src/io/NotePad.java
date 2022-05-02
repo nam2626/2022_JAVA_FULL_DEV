@@ -21,9 +21,21 @@ public class NotePad {
 		FileWriter fw = null;
 		PrintWriter pw = null;
 		try {
-			fw = new FileWriter(fileName,true);
+			fw = new FileWriter(fileName + ".txt",true);
 			pw = new PrintWriter(fw);
 			
+			String str = "";
+			
+//			while(!(str = sc.nextLine()).equals("exit")) {
+//				pw.println(str);
+//				pw.flush();
+//			}
+			while(true) {
+				str = sc.nextLine();//내용 입력
+				if(str.equals("exit")) break;//exit 입력 체크
+				pw.println(str);//파일 출력
+				pw.flush();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}finally {
