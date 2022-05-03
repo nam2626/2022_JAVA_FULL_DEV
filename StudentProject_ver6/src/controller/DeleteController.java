@@ -11,9 +11,10 @@ public class DeleteController implements Controller {
 		System.out.print("삭제할 학번을 입력하세요 : ");
 		String studentNo = sc.nextLine();
 		
-		if(StudentService.getInstance().deleteStudent(studentNo))
+		if(StudentService.getInstance().deleteStudent(studentNo)) {
 			System.out.println("학생 정보가 정상적으로 삭제 되었습니다.");
-		else
+			StudentService.getInstance().updateFile();
+		}else
 			System.out.println("삭제할 학생 정보가 없습니다.");
 			
 	}

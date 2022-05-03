@@ -32,10 +32,9 @@ public class StudentService {
 		
 		try {
 			fis = new FileInputStream("student.dat");
-			
+			ois = new ObjectInputStream(fis);
 			try {
 				while(true) {
-					ois = new ObjectInputStream(fis);
 					StudentVO vo = (StudentVO) ois.readObject();
 					list.add(vo);
 				}
@@ -57,6 +56,33 @@ public class StudentService {
 			}
 		}
 	}
+	
+	public void updateFile() {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		
+		try {
+			fos = new FileOutputStream("student.dat");
+			oos = new ObjectOutputStream(fos);
+			
+			for(StudentVO vo : list) {
+				oos.writeObject(vo);
+			}
+			oos.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(oos!=null)oos.close();
+				if(fos!=null)fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 	public static StudentService getInstance() {
 		if (instance == null)
 			instance = new StudentService();
@@ -77,31 +103,7 @@ public class StudentService {
 		if(list.contains(vo)) {
 			throw new StudentException("학번이 중복되었습니다.");
 		}
-		FileOutputStream fos = null;
-		ObjectOutputStream oos = null;
-		boolean result = false;
-		try {
-			fos = new FileOutputStream("student.dat", true);
-			oos = new ObjectOutputStream(fos);
-			
-			oos.writeObject(vo);
-			oos.flush();
-			
-			result = list.add(vo);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(oos!=null)oos.close();
-				if(fos!=null)fos.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return result; 
+		return list.add(vo); 
 	}
 
 	// 학생정보 조회

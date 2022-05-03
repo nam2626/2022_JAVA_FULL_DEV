@@ -26,7 +26,7 @@ public class RegisterController implements Controller {
 			StudentService.getInstance().registerStudent(
 					new StudentVO(studentNo, name, major, score));
 			System.out.println("학생정보 등록 완료");
-		
+			StudentService.getInstance().updateFile();//파일을 최신화
 		} catch (StudentException e) {
 			System.out.println(e.getMessage());
 		} catch (InputMismatchException e) {

@@ -23,6 +23,7 @@ public class UpdateController implements Controller {
 			System.out.print("수정할 평점 : ");
 			vo.setScore(sc.nextDouble());
 			sc.nextLine();
+			StudentService.getInstance().updateFile();
 		} catch (StudentException e) {
 			System.out.println(e.getMessage());
 		}catch (InputMismatchException e) {
