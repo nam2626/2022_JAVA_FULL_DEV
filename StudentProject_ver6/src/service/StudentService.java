@@ -32,10 +32,10 @@ public class StudentService {
 		
 		try {
 			fis = new FileInputStream("student.dat");
-			ois = new ObjectInputStream(fis);
 			
 			try {
 				while(true) {
+					ois = new ObjectInputStream(fis);
 					StudentVO vo = (StudentVO) ois.readObject();
 					list.add(vo);
 				}
