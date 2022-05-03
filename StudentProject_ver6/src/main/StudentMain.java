@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 import controller.Controller;
 import controller.HandlerMapping;
+import service.StudentService;
 
 public class StudentMain {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
+
 		while(true) {
 			//메뉴 출력
 			System.out.println("---- 학생정보관리 프로그램 ----");

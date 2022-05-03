@@ -3,8 +3,10 @@ package service;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import exception.StudentException;
@@ -75,7 +77,31 @@ public class StudentService {
 		if(list.contains(vo)) {
 			throw new StudentException("학번이 중복되었습니다.");
 		}
-		return list.add(vo); 
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		boolean result = false;
+		try {
+			fos = new FileOutputStream("student.dat", true);
+			oos = new ObjectOutputStream(fos);
+			
+			oos.writeObject(vo);
+			oos.flush();
+			
+			result = list.add(vo);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(oos!=null)oos.close();
+				if(fos!=null)fos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result; 
 	}
 
 	// 학생정보 조회
