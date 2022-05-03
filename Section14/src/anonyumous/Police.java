@@ -15,4 +15,7 @@ public class Police {
 	public void shot() {
 		gun.shot();
 	}
+	public void reload() {
+		gun.reload();
+	}
 }

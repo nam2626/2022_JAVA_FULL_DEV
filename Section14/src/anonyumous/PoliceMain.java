@@ -36,7 +36,7 @@ public class PoliceMain {
 			}
 		});
 		police.shot();
-		
+		police.reload();
 	}
 
 }
