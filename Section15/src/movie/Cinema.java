@@ -1,12 +1,19 @@
 package movie;
 
 public class Cinema {
+	private static Cinema instance = new Cinema();
 	private String[] seat;
 
-	public Cinema() {
+	private Cinema() {
 		seat = new String[5];
 	}
 	
+	public static Cinema getInstance() {
+		if(instance == null)
+			instance = new Cinema();
+		return instance;
+	}
+
 	public synchronized boolean reservation(int seatNo, String name) {
 		try {
 			Thread.sleep(2000);
