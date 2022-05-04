@@ -14,7 +14,7 @@ public class Bank {
 		return instance;
 	}
 	
-	public int withdraw(int m) {
+	public synchronized int withdraw(int m) {
 		money -= m;
 		return money;
 	}
