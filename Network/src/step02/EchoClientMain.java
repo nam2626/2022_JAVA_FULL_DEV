@@ -17,7 +17,7 @@ public class EchoClientMain {
 		Scanner sc = null;
 		
 		try {
-			server = new Socket("127.0.0.1", 1234);
+			server = new Socket("192.168.5.101", 1234);
 			
 			pw = new PrintWriter(server.getOutputStream());
 			br = new BufferedReader(new InputStreamReader(server.getInputStream()));
