@@ -42,6 +42,9 @@ public class ServerWoker extends Thread{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			EchoMultiServerMain.list.remove(this);
+			System.out.println(client.getInetAddress() + "님이 접속 종료 했습니다. 현재 접속인원 : " +
+					EchoMultiServerMain.list.size());
 		}
 	}
 	

@@ -3,9 +3,11 @@ package step02;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class EchoMultiServerMain {
-
+	public static ArrayList<ServerWoker> list = new ArrayList<ServerWoker>(); 
+	
 	public static void main(String[] args) {
 		ServerSocket server = null;
 		
@@ -17,6 +19,8 @@ public class EchoMultiServerMain {
 				System.out.println(client.getInetAddress() + "님이 접속했습니다.");
 				ServerWoker worker = new ServerWoker(client);
 				worker.start();
+				list.add(worker);
+				System.out.println("현재 접속인원 : "+list.size());
 			}
 			
 		} catch (IOException e) {
