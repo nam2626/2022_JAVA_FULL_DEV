@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,30 @@ public class StudentDAO {
 		if(instance == null)
 			instance = new StudentDAO();
 		return instance;
+	}
+	public StudentVO selectStudent(String sno) {
+		StudentVO vo = null;
+		String sql = "select s.sno, s.sname, m.major_name, s.score "
+				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no and s.sno like ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = manager.getConn().prepareStatement(sql);
+			pstmt.setString(1, sno);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String sname = rs.getString(2);
+				String majorName = rs.getString(3);
+				double score = rs.getDouble(4);
+				vo = new StudentVO(sno, sname, 0, majorName, score);						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
 	}
 	
 	public ArrayList<StudentVO> selectAllStudent(){
@@ -43,8 +68,6 @@ public class StudentDAO {
 		}finally {
 			manager.close(pstmt, rs);
 		}	
-		
-		
 		
 		return list;
 	}
