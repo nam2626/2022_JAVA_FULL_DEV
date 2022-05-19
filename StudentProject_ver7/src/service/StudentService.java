@@ -28,6 +28,14 @@ public class StudentService {
 		return list;
 	}
 	
+	public StudentVO selectStudent(String sno) throws StudentException {
+		StudentVO vo = dao.selectStudent(sno);
+		
+		if(vo == null) throw new StudentException("검색 결과 해당 학생 정보가 없습니다.");
+		
+		return vo;
+	}
+	
 }
 
 
