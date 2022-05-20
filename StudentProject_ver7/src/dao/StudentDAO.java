@@ -12,41 +12,43 @@ import vo.StudentVO;
 public class StudentDAO {
 	private static StudentDAO instance = new StudentDAO();
 	private DBManager manager;
+
 	private StudentDAO() {
 		manager = DBManager.getInstance();
 	}
 
 	public static StudentDAO getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new StudentDAO();
 		return instance;
 	}
+
 	public StudentVO selectStudent(String sno) {
 		StudentVO vo = null;
 		String sql = "select s.sno, s.sname, m.major_name, s.score "
 				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no(+) and s.sno like ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			pstmt = manager.getConn().prepareStatement(sql);
 			pstmt.setString(1, sno);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				String sname = rs.getString(2);
 				String majorName = rs.getString(3);
 				double score = rs.getDouble(4);
-				vo = new StudentVO(sno, sname, 0, majorName, score);						
+				vo = new StudentVO(sno, sname, 0, majorName, score);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return vo;
 	}
-	
-	public ArrayList<StudentVO> selectAllStudent(){
+
+	public ArrayList<StudentVO> selectAllStudent() {
 		ArrayList<StudentVO> list = new ArrayList<StudentVO>();
 		String sql = "select s.sno, s.sname, m.major_name, s.score "
 				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no(+)";
@@ -55,29 +57,29 @@ public class StudentDAO {
 		try {
 			pstmt = manager.getConn().prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				String sno = rs.getString(1);
 				String sname = rs.getString(2);
 				String majorName = rs.getString(3);
 				double score = rs.getDouble(4);
-				list.add(new StudentVO(sno, sname, 0, majorName, score));				
+				list.add(new StudentVO(sno, sname, 0, majorName, score));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			manager.close(pstmt, rs);
-		}	
-		
+		}
+
 		return list;
 	}
 
 	public int insertStudent(StudentVO vo) {
 		int count = 0;
-		
+
 		PreparedStatement pstmt = null;
 		String sql = "insert into student values(?,?,?,?)";
-		
+
 		try {
 			pstmt = manager.getConn().prepareStatement(sql);
 			pstmt.setString(1, vo.getSno());
@@ -88,21 +90,34 @@ public class StudentDAO {
 			manager.getConn().commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			manager.close(pstmt, null);
 		}
-		
+
 		return count;
 	}
-	
+
+	public int updateStudent(StudentVO vo) {
+		int count = 0;
+
+		PreparedStatement pstmt = null;
+		String sql = "update student set sname=?,major_no=?,score=? where sno like ?";
+
+		try {
+			pstmt = manager.getConn().prepareStatement(sql);
+			pstmt.setString(4, vo.getSno());
+			pstmt.setString(1, vo.getSname());
+			pstmt.setInt(2, vo.getMajorNo());
+			pstmt.setDouble(3, vo.getScore());
+			count = pstmt.executeUpdate();
+			manager.getConn().commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(pstmt, null);
+		}
+
+		return count;
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
