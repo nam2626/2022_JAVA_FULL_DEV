@@ -43,6 +43,10 @@ public class StudentService {
 	public int updateStudent(StudentVO vo) {
 		return dao.updateStudent(vo);
 	}
+
+	public int deleteStudent(String sno) {
+		return dao.deleteStudent(sno);
+	}
 	
 }
 
