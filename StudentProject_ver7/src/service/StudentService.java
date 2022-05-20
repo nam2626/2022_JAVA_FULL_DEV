@@ -35,6 +35,10 @@ public class StudentService {
 		
 		return vo;
 	}
+
+	public int insertStudent(StudentVO vo) {
+		return dao.insertStudent(vo);
+	}
 	
 }
 
