@@ -24,7 +24,7 @@ public class StudentDAO {
 	public StudentVO selectStudent(String sno) {
 		StudentVO vo = null;
 		String sql = "select s.sno, s.sname, m.major_name, s.score "
-				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no and s.sno like ?";
+				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no(+) and s.sno like ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -49,7 +49,7 @@ public class StudentDAO {
 	public ArrayList<StudentVO> selectAllStudent(){
 		ArrayList<StudentVO> list = new ArrayList<StudentVO>();
 		String sql = "select s.sno, s.sname, m.major_name, s.score "
-				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no";
+				+ "from STUDENT s, MAJOR m where s.major_no = m.major_no(+)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {

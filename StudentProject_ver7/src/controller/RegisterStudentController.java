@@ -37,9 +37,9 @@ public class RegisterStudentController implements Controller {
 		double score = sc.nextDouble();
 		sc.nextLine();
 		
-		StudentService.getInstance()
+		int result = StudentService.getInstance()
 			.insertStudent(new StudentVO(sno, sname, majorNo, null, score));
-		
+		System.out.println(result);
 		
 	}
 
