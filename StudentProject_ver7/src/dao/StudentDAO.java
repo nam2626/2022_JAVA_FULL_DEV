@@ -139,4 +139,42 @@ public class StudentDAO {
 		return count;
 	}
 
+	public ArrayList<StudentVO> selectRankOne(){
+		ArrayList<StudentVO> list = new ArrayList<StudentVO>();
+		String sql = "select * from "
+				+ "(select s.sno, s.sname, m.major_name, s.score, "
+				+ "rank() over(order by s.score desc) as rk "
+				+ "from STUDENT s, MAJOR m "
+				+ "where s.major_no = m.major_no) where rk = 1";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = manager.getConn().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String sno = rs.getString(1);
+				String sname = rs.getString(2);
+				String majorName = rs.getString(3);
+				double score = rs.getDouble(4);
+				list.add(new StudentVO(sno, sname, 0, majorName, score));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			manager.close(pstmt, rs);
+		}
+
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+

@@ -47,6 +47,14 @@ public class StudentService {
 	public int deleteStudent(String sno) {
 		return dao.deleteStudent(sno);
 	}
+
+	public ArrayList<StudentVO> selectRankOne() throws StudentException {
+		ArrayList<StudentVO> list = dao.selectRankOne();
+		
+		if(list.isEmpty())
+			throw new StudentException("학생 데이터가 하나도 없습니다.");
+		return list;
+	}
 	
 }
 
