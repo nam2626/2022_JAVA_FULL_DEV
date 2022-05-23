@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import config.DBManager;
 import vo.StudentVO;
@@ -166,6 +167,11 @@ public class StudentDAO {
 		}
 
 		return list;
+	}
+
+	public HashMap<String, Double> selectMajorAvgSocre() {
+		
+		return null;
 	}
 }
 
