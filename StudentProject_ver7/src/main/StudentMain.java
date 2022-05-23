@@ -20,6 +20,7 @@ public class StudentMain {
 			System.out.println("4. 학생정보삭제");
 			System.out.println("5. 학생정보 전체조회");
 			System.out.println("6. 전체 석차 1등 조회");
+			System.out.println("7. 학과별 평균 평점 조회");
 			System.out.println("0. 프로그램 종료");
 			//메뉴 번호 입력
 			System.out.print("원하시는 메뉴번호를 입력하세요 > ");

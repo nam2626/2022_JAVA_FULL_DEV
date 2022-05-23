@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dao.StudentDAO;
 import exception.StudentException;
@@ -54,6 +55,10 @@ public class StudentService {
 		if(list.isEmpty())
 			throw new StudentException("학생 데이터가 하나도 없습니다.");
 		return list;
+	}
+
+	public HashMap<String, Double> selectMajorAvgSocre() {
+		return dao.selectMajorAvgSocre();
 	}
 	
 }

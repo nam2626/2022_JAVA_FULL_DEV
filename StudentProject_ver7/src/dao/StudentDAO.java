@@ -170,8 +170,23 @@ public class StudentDAO {
 	}
 
 	public HashMap<String, Double> selectMajorAvgSocre() {
+		HashMap<String, Double> map = new HashMap<String, Double>();
 		
-		return null;
+		String sql = "select m.major_name, trunc(avg(s.score),2) from STUDENT s, MAJOR m "
+				+ "where s.major_no = m.major_no(+) group by m.major_name";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = manager.getConn().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				map.put(rs.getString(1), rs.getDouble(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return map;
 	}
 }
 
