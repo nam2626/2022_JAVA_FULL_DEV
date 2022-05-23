@@ -36,6 +36,9 @@ public class HandlerMapping {
 		case 7:
 			controller = new SelectMajorAvgScoreController();
 			break;
+		case 8:
+			controller = new SelectSchoolScholarshipController();
+			break;
 		}
 		
 		

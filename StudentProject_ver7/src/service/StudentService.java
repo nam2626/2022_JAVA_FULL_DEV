@@ -60,6 +60,10 @@ public class StudentService {
 	public HashMap<String, Double> selectMajorAvgSocre() {
 		return dao.selectMajorAvgSocre();
 	}
+
+	public ArrayList<HashMap<String, Object>> selectStudentScholarship() {
+		return dao.selectStudentScholarship();
+	}
 	
 }
 

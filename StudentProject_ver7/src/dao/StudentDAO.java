@@ -188,7 +188,7 @@ public class StudentDAO {
 		}
 		return map;
 	}
-	public void selectStudentScholarship() {
+	public ArrayList<HashMap<String, Object>> selectStudentScholarship() {
 		String sql = "select s.sno, s.sname, m.major_name, ss.money "
 				+ "from STUDENT s, MAJOR m, STUDENT_SCHOLARSHIP ss "
 				+ "where s.major_no = m.major_no(+) and s.sno = ss.student_no";
@@ -212,7 +212,7 @@ public class StudentDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		return list;
 	}
 }
 
