@@ -188,6 +188,32 @@ public class StudentDAO {
 		}
 		return map;
 	}
+	public void selectStudentScholarship() {
+		String sql = "select s.sno, s.sname, m.major_name, ss.money "
+				+ "from STUDENT s, MAJOR m, STUDENT_SCHOLARSHIP ss "
+				+ "where s.major_no = m.major_no(+) and s.sno = ss.student_no";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+		
+		try {
+			pstmt = manager.getConn().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("sno", rs.getString(1));
+				map.put("sname", rs.getString(2));
+				map.put("major_name", rs.getString(3));
+				map.put("price", rs.getInt(4));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }
 
 
