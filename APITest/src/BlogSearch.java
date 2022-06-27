@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -35,6 +36,10 @@ public class BlogSearch {
 			tag = tag.replace("{result}", table);
 			System.out.println(tag);
 			
+			FileWriter fw = new FileWriter(fileName+".html");
+			fw.write(tag);
+			fw.flush();
+			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
