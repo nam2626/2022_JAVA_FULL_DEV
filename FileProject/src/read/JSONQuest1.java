@@ -9,32 +9,32 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class JSONFileReader {
+public class JSONQuest1 {
 
 	public static void main(String[] args) {
 		File file = new File("data.json");
+		
 		FileReader fr = null;
 		BufferedReader br = null;
 		
 		try {
 			fr = new FileReader(file);
 			br = new BufferedReader(fr);
-			String result = new String();
+			
+			String r = new String();
+			
 			while(true) {
 				String s = br.readLine();
 				if(s == null) break;
-				result+=s;
+				r += s;					
 			}
-			System.out.println(result);
-			//JSON으로 변환해서 출력
-			JSONArray arr = new JSONArray(result);
-			System.out.println(arr.length());
-			for(int i=0;i<arr.length();i++) {
-				//System.out.println(arr.get(i));
-				JSONObject obj = arr.getJSONObject(i);
-				System.out.println(obj.get("id") + " " + obj.get("first_name") + " " 
-				+ obj.get("last_name") + " " + obj.get("email") + " "+
-						obj.get("gender") +" "+ obj.get("ip_address"));
+			JSONArray array = new JSONArray(r);
+			for(int i=0;i<array.length();i++) {
+				JSONObject obj = array.getJSONObject(i);
+				if(obj.getInt("id") % 3 == 0 && obj.getString("gender").equals("Male"))
+					System.out.println(obj.get("id") + " " + obj.get("first_name") + " " 
+							+ obj.get("last_name") + " " + obj.get("email") + " "+
+									obj.get("gender") +" "+ obj.get("ip_address"));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -48,13 +48,9 @@ public class JSONFileReader {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 
 }
-
-
-
 
 
 
