@@ -27,10 +27,10 @@ public class BlogSearch {
 			for(String row : list) {
 				String cell[] = row.split("\t");
 				table += "<tr>";
-				for(String s : cell) {
-					table += "<td>"+s+"</td>";
+				for(int i=0;i<cell.length-1;i++) {
+					table += "<td>"+cell[i]+"</td>";
 				}
-				table += "</tr>";
+				table += "<td><a href='"+cell[cell.length-1]+"'>해당 페이지 이동</a></td></tr>";
 			}
 			table += "</table>";
 			tag = tag.replace("{result}", table);
