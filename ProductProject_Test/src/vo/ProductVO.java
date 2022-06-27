@@ -58,6 +58,12 @@ public class ProductVO {
 	public void printProductInfo() {
 		System.out.println(no + " " + name + " " + maker + " " + ea + " " + storage);
 	}
+
+	@Override
+	public String toString() {
+		return "ProductVO [no=" + no + ", name=" + name + ", maker=" + maker + ", ea=" + ea + ", storage=" + storage
+				+ "]";
+	}
 	
 	
 	
