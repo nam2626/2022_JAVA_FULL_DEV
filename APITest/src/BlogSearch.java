@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,6 +16,29 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class BlogSearch {
+	public static void writeHTML(ArrayList<String> list,String fileName) {
+		byte[] encode;
+		try {
+			encode = Files.readAllBytes(Paths.get("template.html"));
+			String tag = new String(encode,"UTF-8");
+			System.out.println(tag);
+			String table = "<table><tr><th>블로그명</th><th>작성일</th><th>글제목</th><th>링크</th></tr>";
+			for(String row : list) {
+				String cell[] = row.split("\t");
+				table += "<tr>";
+				for(String s : cell) {
+					table += "<td>"+s+"</td>";
+				}
+				table += "</tr>";
+			}
+			table += "</table>";
+			tag = tag.replace("{result}", table);
+			System.out.println(tag);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public static ArrayList<String> blogSearch(String text) {
 		String clientId = "_1rIIr0u6hwdD4VpqYnd";
         String clientSecret = "k5ERzutCdQ";
@@ -74,6 +99,7 @@ public class BlogSearch {
         for(String str : list) {
         	System.out.println(str);
         }
+        writeHTML(list,text);
     }
 
   
