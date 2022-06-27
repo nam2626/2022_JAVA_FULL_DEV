@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONObject;
+
 public class PaPagoEx2 {
 	public static String papagoTranslate(String target, String text) {
 		String clientId = "_1rIIr0u6hwdD4VpqYnd";
@@ -16,6 +18,7 @@ public class PaPagoEx2 {
         DataOutputStream dos = null;
         BufferedReader br = null;
         HttpURLConnection con = null;
+        String result = null;
         try {
 			text = URLEncoder.encode(text,"UTF-8");
 			
@@ -47,6 +50,9 @@ public class PaPagoEx2 {
 			}
 			
 			System.out.println(msg);
+			
+			JSONObject json = new JSONObject(msg);
+			result = json.getJSONObject("message").getJSONObject("result").getString("translatedText");
 
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("인코딩 실패", e);
@@ -55,10 +61,11 @@ public class PaPagoEx2 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        return null;
+        return result;
 	}
 	public static void main(String[] args) {
-        papagoTranslate("en", "지금은 장마기간 입니다.");
+        String result = papagoTranslate("en", "지금은 장마기간 입니다.");
+        System.out.println(result);
     }
 
   
