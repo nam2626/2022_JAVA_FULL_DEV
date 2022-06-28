@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -12,36 +10,56 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.w3c.dom.Document;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class BlogSearch {
-	public static void writeHTML(ArrayList<HashMap<String, String>> list,String fileName) {
+	public static void writeHTML(HashMap<String, ArrayList<HashMap<String, String>>> map,String fileName) {
 		byte[] encode;
 		try {
 			encode = Files.readAllBytes(Paths.get("template.html"));
 			String tag = new String(encode,"UTF-8");
 			System.out.println(tag);
-			String table = "<table><tr><th>블로그명</th><th>작성일</th><th>글제목</th><th>링크</th></tr>";
-			for(HashMap<String, String> row : list) {
-				
-				table += "<tr>";
-				table += "<td>"+row.get("bloggername")+"</td>";
-				table += "<td>"+row.get("postdate")+"</td>";
-				table += "<td>"+row.get("title")+"</td>";
-				table += "<td><a href='"+row.get("link")+"'>해당 페이지 이동</a></td></tr>";
+			
+			Set<String> set = map.keySet();
+			Iterator<String> it = set.iterator();
+			String table = "";
+			while(it.hasNext()) {
+				String key = it.next();
+				ArrayList<HashMap<String, String>> list = map.get(key);
+				if(key.equals("blog")) {
+					table += "<h2>블로그 검색 결과</h2><table><tr><th>블로그명</th><th>작성일</th><th>글제목</th><th>링크</th></tr>";
+					for(HashMap<String, String> row : list) {
+						
+						table += "<tr>";
+						table += "<td>"+row.get("bloggername")+"</td>";
+						table += "<td>"+row.get("postdate")+"</td>";
+						table += "<td>"+row.get("title")+"</td>";
+						table += "<td><a href='"+row.get("link")+"'>해당 페이지 이동</a></td></tr>";
+					}
+					table += "</table>";
+				}else {
+					table += "<h2>뉴스 검색 결과</h2><table><tr><th>제목</th><th>작성일</th><th>링크</th><th>요약</th></tr>";
+					for(HashMap<String, String> row : list) {
+						
+						table += "<tr>";
+						table += "<td>"+row.get("title")+"</td>";
+						table += "<td>"+row.get("pubDate")+"</td>";
+						table += "<td><a href='"+row.get("link")+"'>해당 페이지 이동</a></td>";
+						table += "<td>"+row.get("description")+"</td></tr>";
+					}
+					table += "</table>";
+				}
 			}
-			table += "</table>";
 			tag = tag.replace("{result}", table);
 			System.out.println(tag);
 			
