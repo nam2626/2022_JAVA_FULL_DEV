@@ -33,13 +33,13 @@ public class BlogSearch {
 			String tag = new String(encode,"UTF-8");
 			System.out.println(tag);
 			String table = "<table><tr><th>블로그명</th><th>작성일</th><th>글제목</th><th>링크</th></tr>";
-			for(String row : list) {
-				String cell[] = row.split("\t");
+			for(HashMap<String, String> row : list) {
+				
 				table += "<tr>";
-				for(int i=0;i<cell.length-1;i++) {
-					table += "<td>"+cell[i]+"</td>";
-				}
-				table += "<td><a href='"+cell[cell.length-1]+"'>해당 페이지 이동</a></td></tr>";
+				table += "<td>"+row.get("bloggername")+"</td>";
+				table += "<td>"+row.get("postdate")+"</td>";
+				table += "<td>"+row.get("title")+"</td>";
+				table += "<td><a href='"+row.get("link")+"'>해당 페이지 이동</a></td></tr>";
 			}
 			table += "</table>";
 			tag = tag.replace("{result}", table);
