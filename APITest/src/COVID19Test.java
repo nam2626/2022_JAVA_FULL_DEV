@@ -11,7 +11,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class WeatherTest {
+public class COVID19Test {
 
 	public static void main(String[] args) {
 		String result = "";
