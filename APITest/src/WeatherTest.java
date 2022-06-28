@@ -5,6 +5,9 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Calendar;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class WeatherTest {
 	static int timeList[] = new int[]{2,5,8,11,14,17,20,23};
     public static String getTime(){
@@ -47,6 +50,36 @@ public class WeatherTest {
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());
+        JSONObject json = new JSONObject(sb.toString());
+        JSONArray array = json.getJSONObject("response").getJSONObject("body")
+        		.getJSONObject("items").getJSONArray("item");
+        for(int i=0;i<array.length();i++) {
+        	JSONObject obj = array.getJSONObject(i);
+        	switch(obj.getString("category")) {
+        	case "PN1":
+        		System.out.println("1시간 강수량 : "+obj.getString("obsrValue"));
+        		break;
+        	case "REH":
+        		System.out.println("습도 : "+obj.getString("obsrValue"));
+        		break;
+        	case "PTY":
+        		System.out.println("강수 형태 : "+obj.getString("obsrValue"));
+        		break;
+        	case "T1H":
+        		System.out.println("기온 : "+obj.getString("obsrValue"));
+        		break;
+        	case "WSD":
+        		System.out.println("풍속 : "+obj.getString("obsrValue"));
+        		break;
+        	
+        	}
+        }
 	}
 
 }
+
+
+
+
+
+
