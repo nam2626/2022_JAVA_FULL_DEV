@@ -194,7 +194,7 @@ public class BlogSearch {
         HashMap<String, ArrayList<HashMap<String, String>>> map 
         		= new HashMap<String, ArrayList<HashMap<String,String>>>();
         map.put("blog", list1);
-        map.put("new", list2);
+        map.put("news", list2);
         
         writeHTML(map, text);
     }
