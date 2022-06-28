@@ -11,13 +11,22 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class BlogSearch {
-	public static void writeHTML(ArrayList<String> list,String fileName) {
+	public static void writeHTML(ArrayList<HashMap<String, String>> list,String fileName) {
 		byte[] encode;
 		try {
 			encode = Files.readAllBytes(Paths.get("template.html"));
@@ -44,14 +53,13 @@ public class BlogSearch {
 			e.printStackTrace();
 		}
 	}
-	public static ArrayList<String> blogSearch(String text) {
+	public static ArrayList<HashMap<String, String>> blogSearch(String text) {
 		String clientId = "_1rIIr0u6hwdD4VpqYnd";
         String clientSecret = "k5ERzutCdQ";
         String apiURL = "https://openapi.naver.com/v1/search/blog.xml";
         DataOutputStream dos = null;
-        BufferedReader br = null;
         HttpURLConnection con = null;
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<HashMap<String, String>> result = new ArrayList<HashMap<String, String>>();
         try {
 			text = URLEncoder.encode(text,"UTF-8");
 			
@@ -64,27 +72,40 @@ public class BlogSearch {
 			
 			con.setDoOutput(true);
 			
-			int responseCode = con.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-            	 br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            } else {  
-            	br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            }
-			String msg = new String();
+			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = builderFactory.newDocumentBuilder();
+			Document document = null;
 			
-			while(true) {
-				String str = br.readLine();
-				if(str==null) break;
-				msg += str;
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				document = builder.parse(con.getInputStream());
+			} else {  
+				document = builder.parse(con.getErrorStream());
+			}
+
+			document.getDocumentElement().normalize();
+			
+			NodeList nodeList = document.getElementsByTagName("item");
+			for(int i=0;i<nodeList.getLength();i++) {
+				System.out.println(nodeList.item(i).getNodeName());
+				NodeList childNodes = nodeList.item(i).getChildNodes();
+				HashMap<String, String> map = new HashMap<String, String>();
+				for(int j=0;j<childNodes.getLength();j++) {
+					System.out.println("\t" + childNodes.item(j).getNodeName() + " - " + childNodes.item(j).getTextContent());
+					map.put(childNodes.item(j).getNodeName(), childNodes.item(j).getTextContent());
+				}
+				result.add(map);				
 			}
 			
-			System.out.println(msg);
-
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("인코딩 실패", e);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
 			e.printStackTrace();
 		}
         return result;
@@ -93,7 +114,8 @@ public class BlogSearch {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("검색어 입력 : ");
 		String text = sc.nextLine();
-        blogSearch(text);
+        ArrayList<HashMap<String, String>> list = blogSearch(text);
+        writeHTML(list, text);
     }
 
   
