@@ -47,7 +47,7 @@ public class BlogSearch {
 	public static ArrayList<String> blogSearch(String text) {
 		String clientId = "_1rIIr0u6hwdD4VpqYnd";
         String clientSecret = "k5ERzutCdQ";
-        String apiURL = "https://openapi.naver.com/v1/search/blog";
+        String apiURL = "https://openapi.naver.com/v1/search/blog.xml";
         DataOutputStream dos = null;
         BufferedReader br = null;
         HttpURLConnection con = null;
@@ -79,14 +79,6 @@ public class BlogSearch {
 			}
 			
 			System.out.println(msg);
-			
-			JSONObject json = new JSONObject(msg);
-			JSONArray arr = json.getJSONArray("items");
-			for(int i=0;i<arr.length();i++) {
-				JSONObject obj = arr.getJSONObject(i);
-				result.add(obj.getString("bloggername") + "\t" + obj.getString("postdate")+ "\t" + obj.getString("title")+ "\t" + obj.getString("link"));
-			}
-			
 
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("인코딩 실패", e);
@@ -99,12 +91,9 @@ public class BlogSearch {
 	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		System.out.print("검색어 입력 : ");
 		String text = sc.nextLine();
-        ArrayList<String> list = blogSearch(text);
-        for(String str : list) {
-        	System.out.println(str);
-        }
-        writeHTML(list,text);
+        blogSearch(text);
     }
 
   
